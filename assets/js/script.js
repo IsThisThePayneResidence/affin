@@ -22,7 +22,7 @@ var y3 = "6";
 function checkAndEvaluate() {
     var a = +$('#a').val();
     var n = +$('#n').val();
-    console.log([a, n]);
+    // console.log([a, n]);
     if (a && n) {
         evaluateAndPrint(a, n)
     }
@@ -42,7 +42,7 @@ function printToTable(data) {
         }
         trTableOmset += '</tr>';
     }
-    $('#res').val(data.ver[data.ver.length - 1][y2])
+    $('label').text(data.ver[data.ver.length - 1][y2]);
     tbodyTableOmset.append(trTableOmset);
 }
 
@@ -69,7 +69,7 @@ function evaluateAndPrint(a, n) {
     ];
 
     for (i = 2;;++i) {
-        console.log(data);
+        // console.log(data);
         data[i] = {"0": null, "1": null, "2": null, "3": null,  "4": null, "5": null, "6": null};
         data[i][q] = Math.floor(data[i - 1][x3] / data[i - 1][y3]);
 
