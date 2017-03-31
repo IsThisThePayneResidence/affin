@@ -42,7 +42,7 @@ function printToTable(data) {
         }
         trTableOmset += '</tr>';
     }
-    $('label').text(data.ver[data.ver.length - 1][y2]);
+    $('label').text(data.res);
     tbodyTableOmset.append(trTableOmset);
 }
 
@@ -68,6 +68,7 @@ function evaluateAndPrint(a, n) {
         }
     ];
 
+    var res = null;
     for (i = 2;;++i) {
         // console.log(data);
         data[i] = {"0": null, "1": null, "2": null, "3": null,  "4": null, "5": null, "6": null};
@@ -81,10 +82,14 @@ function evaluateAndPrint(a, n) {
         data[i][y2] = data[i - 1][x2] - data[i][q] * data[i - 1][y2];
         data[i][y3] = data[i - 1][x3] - data[i][q] * data[i - 1][y3];
 
-        if (data[i][y3] == 0.0 || i > 15) {
+        if (data[i][y3] == 1 || i > 15) {
+            res = data[i][y2];
+            if (res < 0) {
+                res = n + res + (` (${n} - ${Math.abs(res)})`);
+            }
             break
         }
     }
 
-    printToTable({"ver": data})
+    printToTable({"ver": data, "res": res})
 }
